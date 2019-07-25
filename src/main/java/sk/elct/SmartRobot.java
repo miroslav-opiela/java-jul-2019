@@ -85,4 +85,85 @@ public class SmartRobot {
     public int randomDice() {
         return (int) (Math.random() * 6 + 1);
     }
+
+    // vstupny string nema medzery, vsetko male pismena
+    public static boolean isPalindrome(String s) {
+        for (int i = 0; i < s.length() / 2; i++) {
+            if (s.charAt(i) != s.charAt(s.length() - i - 1)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    // vstupny retazec ma medzery, male aj velke pismena
+    public boolean isPalindromeWithSpaces(String s) {
+        // Jelenovi pivo nelej
+        s = s.toUpperCase();
+        // JELENOVI PIVO NELEJ
+        s = s.replaceAll(" ", "");
+        // JELENOVIPIVONELEJ
+
+        String newString = this.reverseString(s);
+        return s.equals(newString);
+    }
+
+    // minimum a maximum vratane
+    public int randomNumber(int min, int max) {
+        return (int) (Math.random() * (max - min + 1) + min);
+
+    }
+
+    public char randomChar(String s) {
+        // 1. vygenerovat nahodne cislo od 0 po dlzku slova
+        int index = this.randomNumber(0, s.length() - 1);
+        // 2. vratit znak na vygenerovanom indexe
+        return s.charAt(index);
+    }
+
+    public String randomName() {
+        String result = "";
+        String samohlasky = "aeiouy";
+        String spoluhlasky = "bcdfghjklmnprstvz";
+        // 1. vygenerovat nahodne cislo od 4 do 7
+        int wordLength = this.randomNumber(4, 7);
+        // 2. v cykle po vygenerovane cislo:
+        for (int i = 0; i < wordLength; i++) {
+            // 3.1 ak je to parny index
+            // vybrat pismeno zo spoluhlasok
+            if (i % 2 == 0) {
+                result = result + this.randomChar(spoluhlasky);
+            } else {
+                // 3.2 ak je to neparny index
+                // vybrat pismeno zo samohlasok
+                result = result + this.randomChar(samohlasky);
+            }
+        }
+        // 4. vratit vytvoreny string
+        return result;
+    }
+
+    public Datum tenYearsLater(Datum datum) {
+        Datum newDatum = new Datum();
+        newDatum.day = datum.day;
+        newDatum.month = datum.month;
+        newDatum.year = datum.year + 10;
+        return newDatum;
+    }
+
+    public int[] addToArray(int[] numbers, int value) {
+        // 1. vyrobit nove pole o 1 vacsie
+        int[] newArray = new int[numbers.length + 1];
+        // 2. skopirovat hodnoty z povodneho pola
+        for (int i = 0; i < numbers.length; i++) {
+            newArray[i] = numbers[i];
+        }
+        //System.arraycopy(numbers, 0, newArray,
+        //        0, numbers.length);
+
+        // 3. pridat value na koniec
+        newArray[newArray.length - 1] = value;
+        // 4. vratit nove pole
+        return newArray;
+    }
 }

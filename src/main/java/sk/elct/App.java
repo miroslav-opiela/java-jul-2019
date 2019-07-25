@@ -2,42 +2,54 @@ package sk.elct;
 
 import sk.upjs.jpaz2.ObjectInspector;
 
+import java.util.Arrays;
+
 public class App {
     public static void main( String[] args ) {
         SmartRobot mark = new SmartRobot();
-        System.out.println(mark.sing("tancuj vykrucaj", 'l'));
+        System.out.println(mark.isPalindromeWithSpaces("Jelenovi pivo nelej"));
 
-        System.out.println(mark.abbreviation("ut"));
-        String res = mark.generateWord('A', 3);
-        System.out.println(res);
-        System.out.println(res.length());
-        System.out.println(mark.reverseString("abcd"));
+        int a = 5 / 2;
+        System.out.println(a);
+        double c = (double)a / a;
 
-       /* System.out.println('z' > 'a');
-        System.out.println('z' > 'Z');
-        System.out.println('A' == 65);
-        System.out.println('Z' > 65);
-        System.out.println('A');
-        int cislo = 'A';
-        System.out.println(cislo);
-        char znak = 65;
-        System.out.println(znak);*/
-        System.out.println(mark.numbersCount("sdasda4545asddsa56"));
-        System.out.println(mark.hasSameCharactersMystery("aaaa"));
-
-        String a = "abc";
-        String b = "abc";
-        String c = new String("abc");
-        System.out.println(a == b);
-        System.out.println(a == c);
-        System.out.println(a.equals(b));
-        System.out.println(a.equals(c));
-
-        mark.printBillions(10);
+        double b = 5.0 / 2;
+        System.out.println(b);
 
         for (int i = 0; i < 100; i++) {
-            System.out.println(mark.randomDice());
+            System.out.println(mark.randomName());
         }
+
+        Datum dnes = new Datum();
+        dnes.day = 25;
+        dnes.month = 7;
+        dnes.year = 2019;
+
+        Datum neskor = mark.tenYearsLater(dnes);
+        System.out.println(dnes.day + "."
+                + dnes.month + "." + dnes.year + " " + dnes);
+        System.out.println(neskor.day + "."
+                + neskor.month + "." + neskor.year + " " + neskor);
+        System.out.println(dnes.year);
+        System.out.println(Datum.CALENDAR);
+
+        System.out.println(Math.PI);
+        SmartRobot.isPalindrome("abcba");
+
+        int[] pole = new int[4];
+        pole[0] = 4;
+        pole[1] = 2;
+        pole[2] = 7;
+        pole[3] = 3;
+        System.out.println(pole[2]);
+        System.out.println(Arrays.toString(pole));
+        Arrays.sort(pole);
+        System.out.println(Arrays.toString(pole));
+        for (int i = 0; i < pole.length; i++) {
+            System.out.println(pole[i]);
+        }
+        int[] cisla = {1, 2, 3};
+        System.out.println(Arrays.toString(mark.addToArray(cisla, 9)));
 
     }
 }
