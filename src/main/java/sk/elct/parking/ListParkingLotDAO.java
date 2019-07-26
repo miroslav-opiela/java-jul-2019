@@ -11,7 +11,7 @@ import java.util.Scanner;
 /**
  * Trieda poskytuje pristup k datam.
  */
-public class ListParkingLotDAO implements FileBasedStorage{
+public class ListParkingLotDAO implements FileBasedStorage {
 
     private static final String FILENAME = "parkovisko.txt";
 
@@ -95,9 +95,13 @@ public class ListParkingLotDAO implements FileBasedStorage{
         sc.useDelimiter(",");
         String ecv = sc.next();
         long time = sc.nextLong();
-        return new Ticket(ecv, time);
+        if (sc.hasNext()) {
+            String company = sc.next();
+            return new CompanyTicket(ecv, time, company);
+        } else {
+            return new Ticket(ecv, time);
+        }
     }
-
 
 
     public List<Ticket> getAllTickets() {

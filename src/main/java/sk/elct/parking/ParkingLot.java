@@ -32,7 +32,7 @@ public class ParkingLot {
      * @return referencia na objekt triedy ticket so zadanym casom.
      * alebo null ak sa nepodarilo zaparkovat napr. pre nedostatok miesta.
      */
-    public Ticket checkIn(String ecv) {
+    public Ticket checkIn(String ecv, String company) {
         if (isFull()) {
             return null;
         }
@@ -40,7 +40,13 @@ public class ParkingLot {
             // ma zmysel tu vyhodit vlastnu vynimku
             return null;
         }
-        Ticket ticket = new Ticket(ecv);
+        Ticket ticket;
+        if (company != null) {
+            // vyrobim company ticket
+            ticket = new CompanyTicket(ecv, company);
+        } else {
+            ticket = new Ticket(ecv);
+        }
         data.add(ticket);
         return ticket;
     }
@@ -101,7 +107,6 @@ public class ParkingLot {
         Collections.sort(allTickets, new PorovnavacTicketovPodlaCasu());
         return allTickets;
     }
-
 
 
 }

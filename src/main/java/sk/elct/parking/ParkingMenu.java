@@ -18,6 +18,7 @@ public class ParkingMenu {
                     "3: vypis vsetky listky podla ECV, " +
                     "4: pocet volnych miest, " +
                     "5: vypis vsetky listky od najnovsieho, " +
+                    "6: checkIn firemne auto, " +
                     "0: koniec");
             volba = citac.nextInt();
 
@@ -25,7 +26,7 @@ public class ParkingMenu {
                 case 1:
                     System.out.println("Zadaj ECV");
                     String ecv = citac.next();
-                    Ticket ticket = parkingLot.checkIn(ecv);
+                    Ticket ticket = parkingLot.checkIn(ecv, null);
                     if (ticket == null) {
                         System.out.println("Nepodarilo sa zaparkovat. (napr. je plno alebo taka ecv tam uz je)");
                     } else {
@@ -49,6 +50,18 @@ public class ParkingMenu {
                 case 4:
                     System.out.println("pocet volnych miest "
                             + parkingLot.freeLots());
+                    break;
+                case 6:
+                    System.out.println("Zadaj ECV");
+                    String companyEcv = citac.next();
+                    System.out.println("Zadaj nazov firmy");
+                    String company = citac.next();
+                    ticket = parkingLot.checkIn(companyEcv, company);
+                    if (ticket == null) {
+                        System.out.println("Nepodarilo sa zaparkovat. (napr. je plno alebo taka ecv tam uz je)");
+                    } else {
+                        System.out.println("OK, zaregistroval som " + ticket);
+                    }
                     break;
                 default:
                     System.out.println("Taku moznost nemam.");

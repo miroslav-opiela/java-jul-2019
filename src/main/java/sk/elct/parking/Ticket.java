@@ -51,7 +51,7 @@ public class Ticket implements Comparable<Ticket>{
     /**
      * Vrati pocet zacatych hodin od prijazdu.
      */
-    private int getElapsedTime() {
+    public int getElapsedTime() {
         // cas medzi prijazdom a odjazdom v ms
         long elapsedTime =
                 System.currentTimeMillis() - arrivalTime;
@@ -65,6 +65,7 @@ public class Ticket implements Comparable<Ticket>{
         return (int) hours;
     }
 
+    @Override
     public String toString() {
         return ecv + "," + arrivalTime;
     }
