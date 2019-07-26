@@ -11,7 +11,7 @@ import java.util.Scanner;
 /**
  * Trieda poskytuje pristup k datam.
  */
-public class ListParkingLotDAO {
+public class ListParkingLotDAO implements FileBasedStorage{
 
     private static final String FILENAME = "parkovisko.txt";
 
@@ -58,7 +58,7 @@ public class ListParkingLotDAO {
         return null;
     }
 
-    private void load() {
+    public void load() {
         File file = new File(FILENAME);
         try (Scanner sc = new Scanner(file)) {
             while (sc.hasNextLine()) {
@@ -69,6 +69,21 @@ public class ListParkingLotDAO {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+    }
+
+    public void save() {
+        File file = new File(FILENAME);
+        // try-catch with resources
+        try (PrintWriter pw = new PrintWriter(file)) {
+            for (Ticket ticketFromList : tickets) {
+                pw.println(ticketFromList.toString());
+            }
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+
+        }
+
     }
 
     /**
@@ -83,20 +98,7 @@ public class ListParkingLotDAO {
         return new Ticket(ecv, time);
     }
 
-    private void save() {
-        File file = new File(FILENAME);
-        // try-catch with resources
-        try (PrintWriter pw = new PrintWriter(file)) {
-            for (Ticket ticketFromList : tickets) {
-                pw.println(ticketFromList.toString());
-            }
 
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-
-        }
-
-    }
 
     public List<Ticket> getAllTickets() {
         // nechcem dat referenciu na zoznam, ale vyrobit kopiu

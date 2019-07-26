@@ -3,7 +3,7 @@ package sk.elct.parking;
 /**
  * Reprezentuje jedno zaparkovanie.
  */
-public class Ticket {
+public class Ticket implements Comparable<Ticket>{
 
     /**
      * SPZ auta
@@ -69,4 +69,8 @@ public class Ticket {
         return ecv + "," + arrivalTime;
     }
 
+    @Override
+    public int compareTo(Ticket o) {
+        return ecv.compareTo(o.ecv);
+    }
 }

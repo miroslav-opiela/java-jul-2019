@@ -14,7 +14,11 @@ public class ParkingMenu {
         while (volba != 0) {
             System.out.println("---------");
             System.out.println("zvolte si moznost:");
-            System.out.println("1: checkIn, 2: checkOut, 3: vypis vsetky listky, 4: pocet volnych miest, 0: koniec");
+            System.out.println("1: checkIn, 2: checkOut, " +
+                    "3: vypis vsetky listky podla ECV, " +
+                    "4: pocet volnych miest, " +
+                    "5: vypis vsetky listky od najnovsieho, " +
+                    "0: koniec");
             volba = citac.nextInt();
 
             switch (volba) {
@@ -41,7 +45,6 @@ public class ParkingMenu {
                 case 3:
                     List<Ticket> list = parkingLot.getAllTickets();
                     System.out.println(list);
-                    list.clear();
                     break;
                 case 4:
                     System.out.println("pocet volnych miest "

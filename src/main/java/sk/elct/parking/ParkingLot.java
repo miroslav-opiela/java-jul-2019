@@ -1,5 +1,6 @@
 package sk.elct.parking;
 
+import java.util.Collections;
 import java.util.List;
 
 public class ParkingLot {
@@ -86,8 +87,19 @@ public class ParkingLot {
         return price;
     }
 
+    /**
+     * Vrati zoznam listkov zoradenych podla ECV
+     */
     public List<Ticket> getAllTickets() {
-        return data.getAllTickets();
+        List<Ticket> allTickets = data.getAllTickets();
+        Collections.sort(allTickets);
+        return allTickets;
+    }
+
+    public List<Ticket> getAllTicketsSortedByTime() {
+        List<Ticket> allTickets = data.getAllTickets();
+        Collections.sort(allTickets, new PorovnavacTicketovPodlaCasu());
+        return allTickets;
     }
 
 
