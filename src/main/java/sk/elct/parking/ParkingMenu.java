@@ -1,5 +1,6 @@
 package sk.elct.parking;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class ParkingMenu {
@@ -13,7 +14,7 @@ public class ParkingMenu {
         while (volba != 0) {
             System.out.println("---------");
             System.out.println("zvolte si moznost:");
-            System.out.println("1: checkIn, 2: checkOut, 4: pocet volnych miest, 0: koniec");
+            System.out.println("1: checkIn, 2: checkOut, 3: vypis vsetky listky, 4: pocet volnych miest, 0: koniec");
             volba = citac.nextInt();
 
             switch (volba) {
@@ -22,7 +23,7 @@ public class ParkingMenu {
                     String ecv = citac.next();
                     Ticket ticket = parkingLot.checkIn(ecv);
                     if (ticket == null) {
-                        System.out.println("Je plno.");
+                        System.out.println("Nepodarilo sa zaparkovat. (napr. je plno alebo taka ecv tam uz je)");
                     } else {
                         System.out.println("OK, zaregistroval som " + ticket);
                     }
@@ -36,6 +37,11 @@ public class ParkingMenu {
                     } catch (TicketNotFoundException e) {
                         System.err.println("Neexistuje taka ECV v parkovisku");
                     }
+                    break;
+                case 3:
+                    List<Ticket> list = parkingLot.getAllTickets();
+                    System.out.println(list);
+                    list.clear();
                     break;
                 case 4:
                     System.out.println("pocet volnych miest "

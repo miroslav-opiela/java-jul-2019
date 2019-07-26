@@ -1,5 +1,7 @@
 package sk.elct.parking;
 
+import java.util.List;
+
 public class ParkingLot {
 
     /**
@@ -33,7 +35,10 @@ public class ParkingLot {
         if (isFull()) {
             return null;
         }
-
+        if (data.getTicket(ecv) != null) {
+            // ma zmysel tu vyhodit vlastnu vynimku
+            return null;
+        }
         Ticket ticket = new Ticket(ecv);
         data.add(ticket);
         return ticket;
@@ -81,6 +86,10 @@ public class ParkingLot {
         return price;
     }
 
-    // vyriesit pripad ak tam taky ticket uz nie je
+    public List<Ticket> getAllTickets() {
+        return data.getAllTickets();
+    }
+
+
 
 }

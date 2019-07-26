@@ -97,4 +97,9 @@ public class ListParkingLotDAO {
         }
 
     }
+
+    public List<Ticket> getAllTickets() {
+        // nechcem dat referenciu na zoznam, ale vyrobit kopiu
+        return new ArrayList<>(tickets);
+    }
 }
