@@ -5,6 +5,8 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+import java.util.Scanner;
 
 /**
  * Trieda poskytuje pristup k datam.
@@ -20,6 +22,7 @@ public class ListParkingLotDAO {
 
     public ListParkingLotDAO() {
         tickets = new ArrayList<>();
+        load();
     }
 
     public void add(Ticket ticket) {
@@ -56,7 +59,28 @@ public class ListParkingLotDAO {
     }
 
     private void load() {
+        File file = new File(FILENAME);
+        try (Scanner sc = new Scanner(file)) {
+            while (sc.hasNextLine()) {
+                String line = sc.nextLine();
+                Ticket ticket = parseTicket(line);
+                tickets.add(ticket);
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
 
+    /**
+     * @param s vo formate ecv,cas
+     */
+    private Ticket parseTicket(String s) {
+        // da sa urobit s.split(",")
+        Scanner sc = new Scanner(s);
+        sc.useDelimiter(",");
+        String ecv = sc.next();
+        long time = sc.nextLong();
+        return new Ticket(ecv, time);
     }
 
     private void save() {

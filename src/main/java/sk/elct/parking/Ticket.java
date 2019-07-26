@@ -20,6 +20,11 @@ public class Ticket {
         this.arrivalTime = System.currentTimeMillis();
     }
 
+    public Ticket(String ecv, long arrivalTime) {
+        this.ecv = ecv;
+        this.arrivalTime = arrivalTime;
+    }
+
     // tento konstruktor sa doplni automaticky
     // ak nemam napisany ziaden
     /*public Ticket() {

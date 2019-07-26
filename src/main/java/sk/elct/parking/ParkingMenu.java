@@ -30,8 +30,13 @@ public class ParkingMenu {
                 case 2:
                     System.out.println("Zadaj ECV");
                     String leavingEcv = citac.next();
-                    int price = parkingLot.checkOut(leavingEcv);
-                    System.out.println("Zaplat " + price / 100.0 + "€");                    break;
+                    try {
+                        int price = parkingLot.checkOut(leavingEcv);
+                        System.out.println("Zaplat " + price / 100.0 + "€");
+                    } catch (TicketNotFoundException e) {
+                        System.err.println("Neexistuje taka ECV v parkovisku");
+                    }
+                    break;
                 case 4:
                     System.out.println("pocet volnych miest "
                             + parkingLot.freeLots());

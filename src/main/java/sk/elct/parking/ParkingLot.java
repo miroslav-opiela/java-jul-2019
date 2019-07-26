@@ -70,6 +70,9 @@ public class ParkingLot {
      * @return cena v centoch
      */
     public int checkOut(Ticket ticket) {
+        if (ticket == null) {
+            throw new TicketNotFoundException();
+        }
         // vypocitat sumu
         int price = ticket.computePrice();
         // vymazat z listu/db/suboru
