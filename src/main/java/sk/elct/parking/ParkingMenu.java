@@ -24,15 +24,14 @@ public class ParkingMenu {
                     if (ticket == null) {
                         System.out.println("Je plno.");
                     } else {
-                        System.out.println("OK");
+                        System.out.println("OK, zaregistroval som " + ticket);
                     }
                     break;
                 case 2:
                     System.out.println("Zadaj ECV");
                     String leavingEcv = citac.next();
                     int price = parkingLot.checkOut(leavingEcv);
-                    System.out.println("Zaplat " + price);
-                    break;
+                    System.out.println("Zaplat " + price / 100.0 + "€");                    break;
                 case 4:
                     System.out.println("pocet volnych miest "
                             + parkingLot.freeLots());

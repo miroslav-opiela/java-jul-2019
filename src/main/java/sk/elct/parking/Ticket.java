@@ -60,4 +60,8 @@ public class Ticket {
         return (int) hours;
     }
 
+    public String toString() {
+        return ecv + "," + arrivalTime;
+    }
+
 }

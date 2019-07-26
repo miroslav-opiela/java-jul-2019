@@ -1,5 +1,8 @@
 package sk.elct.parking;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,6 +10,8 @@ import java.util.List;
  * Trieda poskytuje pristup k datam.
  */
 public class ListParkingLotDAO {
+
+    private static final String FILENAME = "parkovisko.txt";
 
     /**
      * Zoznam listkov pre zaparkovane auta.
@@ -19,6 +24,7 @@ public class ListParkingLotDAO {
 
     public void add(Ticket ticket) {
         tickets.add(ticket);
+        save();
     }
 
     public int numberOfTickets() {
@@ -27,6 +33,7 @@ public class ListParkingLotDAO {
 
     public void delete(Ticket ticket) {
         tickets.remove(ticket);
+        save();
     }
 
     /*public Ticket getTicket(String ecv) {
@@ -46,5 +53,24 @@ public class ListParkingLotDAO {
             }
         }
         return null;
+    }
+
+    private void load() {
+
+    }
+
+    private void save() {
+        File file = new File(FILENAME);
+        // try-catch with resources
+        try (PrintWriter pw = new PrintWriter(file)) {
+            for (Ticket ticketFromList : tickets) {
+                pw.println(ticketFromList.toString());
+            }
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+
+        }
+
     }
 }
