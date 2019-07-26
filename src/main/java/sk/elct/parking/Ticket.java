@@ -1,5 +1,7 @@
 package sk.elct.parking;
 
+import java.util.Objects;
+
 /**
  * Reprezentuje jedno zaparkovanie.
  */
@@ -73,5 +75,19 @@ public class Ticket implements Comparable<Ticket>{
     @Override
     public int compareTo(Ticket o) {
         return ecv.compareTo(o.ecv);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Ticket ticket = (Ticket) o;
+        return arrivalTime == ticket.arrivalTime &&
+                Objects.equals(ecv, ticket.ecv);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(ecv, arrivalTime);
     }
 }

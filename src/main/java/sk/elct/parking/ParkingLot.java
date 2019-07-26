@@ -1,7 +1,9 @@
 package sk.elct.parking;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ParkingLot {
 
@@ -20,9 +22,15 @@ public class ParkingLot {
      */
     public static final int PRICE_PER_HOUR = 100;
 
+    /**
+     * Pre kazdu firmu pocet hodin parkovania.
+     */
+    private Map<String, Integer> companyHistory;
+
     public ParkingLot(int capacity) {
         this.capacity = capacity;
         data = new ListParkingLotDAO();
+        companyHistory = new HashMap<>();
     }
 
     /**
@@ -89,6 +97,17 @@ public class ParkingLot {
         int price = ticket.computePrice();
         // vymazat z listu/db/suboru
         data.delete(ticket);
+
+        if (ticket instanceof CompanyTicket) {
+            CompanyTicket t = (CompanyTicket) ticket;
+            String companyName = t.getCompany();
+            if (!companyHistory.containsKey(companyName)) {
+                companyHistory.put(companyName, 1);
+            } else {
+                int value = companyHistory.get(companyName);
+                companyHistory.put(companyName, 1 + value);
+            }
+        }
 
         return price;
     }

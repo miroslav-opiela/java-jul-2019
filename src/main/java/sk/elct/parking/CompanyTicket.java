@@ -1,5 +1,7 @@
 package sk.elct.parking;
 
+import java.util.Objects;
+
 public class CompanyTicket extends Ticket {
 
     private String company;
@@ -13,6 +15,10 @@ public class CompanyTicket extends Ticket {
                          String company) {
         super(ecv, arrivalTime);
         this.company = company;
+    }
+
+    public String getCompany() {
+        return company;
     }
 
     @Override
@@ -31,5 +37,19 @@ public class CompanyTicket extends Ticket {
             return 10;
         }
 
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        CompanyTicket that = (CompanyTicket) o;
+        return Objects.equals(company, that.company);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), company);
     }
 }

@@ -3,49 +3,31 @@ package sk.elct.parking;
 import sk.elct.SmartRobot;
 
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class ParkingApp {
 
-    public static int spracujString(String s) {
-        int cislo = -1;
-        try {
-            cislo = Integer.parseInt(s);
-        } catch (NumberFormatException e) {
-            System.out.println("problem");
-        }
-        finally {
-
-        }
-        return cislo;
-    }
-
     public static void main(String[] args) {
-        System.out.println(spracujString("132"));
-        System.out.println(spracujString("132a"));
+        Set<Integer> mnozina = new HashSet<Integer>();
+        mnozina.add(1005166);
+        mnozina.add(2150);
+        mnozina.add(3156168);
+        mnozina.add(1);
+        System.out.println(mnozina);
+        System.out.println(mnozina.contains(2150));
 
-        System.out.println(new ParkingLot(4).toString());
-        System.out.println("abcd".toString());
-        System.out.println(new CompanyTicket("BL111AA", "ELCT").getElapsedTime());
+        Set<Ticket> listky = new HashSet<>();
+        listky.add(new Ticket("KE", 0));
+        listky.add(new Ticket("PO", 0));
+        listky.add(new Ticket("PO", 0));
+        System.out.println(listky);
 
+        CompanyTicket t1 = new CompanyTicket("KE", 0, "ELCT");
+        CompanyTicket t2 = new CompanyTicket("PO", 0, "ELCT");
 
-        String s = new String();
-        SmartRobot mark = new SmartRobot();
-        ParkingLot p = new ParkingLot(3);
-        Ticket t = new Ticket("aa");
+        System.out.println(t1.equals(t2));
 
-        Object q = new String();
-        Object r = new SmartRobot();
-
-        Object i = new CompanyTicket("ab", "elct");
-        FileBasedStorage e = new ListParkingLotDAO();
-        Comparable<Ticket> x = new Ticket("abv");
-
-        //Object[] pole = {"abc", mark, l, x};
-        //System.out.println(Arrays.toString(pole));
-
-        Object l = new CompanyTicket("ab", "ac");
-        if (l instanceof CompanyTicket) {
-            CompanyTicket ll =(CompanyTicket) l;
-        }
     }
 }
