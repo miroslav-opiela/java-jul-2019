@@ -26,7 +26,25 @@ public class ListParkingLotDAO {
     }
 
     public void delete(Ticket ticket) {
-
+        tickets.remove(ticket);
     }
 
+    /*public Ticket getTicket(String ecv) {
+        for (int i = 0; i < tickets.size(); i++) {
+            Ticket ticketFromList = tickets.get(i);
+            if (ticketFromList.getEcv().equals(ecv)) {
+                return ticketFromList;
+            }
+        }
+        return null;
+    }*/
+
+    public Ticket getTicket(String ecv) {
+        for (Ticket ticketFromList : tickets) {
+            if (ticketFromList.getEcv().equals(ecv)) {
+                return ticketFromList;
+            }
+        }
+        return null;
+    }
 }

@@ -12,6 +12,11 @@ public class ParkingLot {
      */
     private ListParkingLotDAO data;
 
+    /**
+     * Cena za hodinu parkovania v centoch.
+     */
+    public static final int PRICE_PER_HOUR = 100;
+
     public ParkingLot(int capacity) {
         this.capacity = capacity;
         data = new ListParkingLotDAO();
@@ -54,7 +59,8 @@ public class ParkingLot {
      * @return cena v centoch
      */
     public int checkOut(String ecv) {
-        return 0;
+        Ticket ticket = data.getTicket(ecv);
+        return checkOut(ticket);
     }
 
     /**
@@ -64,7 +70,12 @@ public class ParkingLot {
      * @return cena v centoch
      */
     public int checkOut(Ticket ticket) {
-        return 0;
+        // vypocitat sumu
+        int price = ticket.computePrice();
+        // vymazat z listu/db/suboru
+        data.delete(ticket);
+
+        return price;
     }
 
     // vyriesit pripad ak tam taky ticket uz nie je

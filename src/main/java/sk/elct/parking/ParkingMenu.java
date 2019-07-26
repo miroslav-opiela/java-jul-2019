@@ -13,7 +13,7 @@ public class ParkingMenu {
         while (volba != 0) {
             System.out.println("---------");
             System.out.println("zvolte si moznost:");
-            System.out.println("1: checkIn, 4: pocet volnych miest, 0: koniec");
+            System.out.println("1: checkIn, 2: checkOut, 4: pocet volnych miest, 0: koniec");
             volba = citac.nextInt();
 
             switch (volba) {
@@ -26,6 +26,12 @@ public class ParkingMenu {
                     } else {
                         System.out.println("OK");
                     }
+                    break;
+                case 2:
+                    System.out.println("Zadaj ECV");
+                    String leavingEcv = citac.next();
+                    int price = parkingLot.checkOut(leavingEcv);
+                    System.out.println("Zaplat " + price);
                     break;
                 case 4:
                     System.out.println("pocet volnych miest "
